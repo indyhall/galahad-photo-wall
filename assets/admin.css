@@ -1,0 +1,32 @@
+.button-primary,
+.button-secondary {
+	transition: all 300ms ease;
+}
+
+.has-photo .add-photo {
+	display: none;
+	opacity: 0;
+}
+
+.needs-photo .update-photo,
+.needs-photo .delete-photo {
+	display: none;
+	opacity: 0;
+}
+
+.spinner {
+	transition: all 300ms ease;
+	display: none;
+	opacity: 0;
+}
+
+.loading .spinner {
+	display: inline-block;
+	opacity: 1;
+}
+
+.loading .button-primary,
+.loading .button-secondary {
+	display: none;
+	opacity: 0;
+}

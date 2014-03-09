@@ -1,0 +1,22 @@
+{
+  "name": "Galahad Photo Wall",
+  "version": "0.1",
+  "authors": [
+    "Chris Morrell <http://cmorrell.com/>"
+  ],
+  "main": "galahad-photo-wall.php",
+  "license": "GPL2",
+  "homepage": "http://cmorrell.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-unveil": "https://github.com/luis-almeida/unveil.git#~1.3.0",
+    "zoomerang": "https://github.com/yyx990803/zoomerang.git#~0.1.7"
+  }
+}
