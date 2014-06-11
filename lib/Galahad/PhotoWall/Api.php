@@ -15,7 +15,7 @@ class Api
     public function __construct(Plugin $plugin)
     {
 	    $this->_plugin = $plugin;
-	    new Api\Ajax($plugin, $this); // Handles AJAX requests to API
+	    new Api\PublicApi($plugin, $this); // Handles AJAX requests to API
     }
 
 	public function getPhoto($req = array())
