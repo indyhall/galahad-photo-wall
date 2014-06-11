@@ -2,7 +2,7 @@
 
 namespace Galahad\PhotoWall\Api;
 
-class Ajax
+class PublicApi
 {
 	protected $_plugin;
 	protected $_api;
