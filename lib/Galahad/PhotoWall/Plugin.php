@@ -2,14 +2,37 @@
 
 namespace Galahad\PhotoWall;
 
+/**
+ * Main Plugin Class
+ *
+ * Handles:
+ *   - Init
+ *   - Sub-component management/dependency injection
+ *   - Activation/deactivation
+ *   - Naming consistency
+ *   - Helper functionality
+ *
+ * @package Galahad\PhotoWall
+ */
 class Plugin
 {
-    const SLUG = 'galahad-photo-wall';
+	const SLUG = 'galahad-photo-wall';
     const PREFIX = 'galahad_photo_wall_';
 
-    protected $_bootstrapFile;
-    protected $_pluginDir;
-    protected $_baseName;
+	/**
+	 * @var String The location of the plugin's bootstrap file
+	 */
+	protected $_bootstrapFile;
+
+	/**
+	 * @var string Root directory of plugin
+	 */
+	protected $_pluginDir;
+
+	/**
+	 * @var string Plugin base name
+	 */
+	protected $_baseName;
 
     /**
      * Constructor
@@ -38,52 +61,118 @@ class Plugin
         $this->doAction('post_init');
     }
 
+	/**
+	 * Get the plugin base name
+	 *
+	 * @return string
+	 */
 	public function basename()
 	{
-		return \plugin_basename($this->_bootstrapFile);
+		return $this->_baseName;
 	}
 
+	/**
+	 * Run through Wordpress' l10n system, but with namespace applied
+	 *
+	 * @param String $text Text to translate
+	 * @return string Translated text
+	 */
 	public function translate($text)
 	{
 		return \translate($text, self::SLUG);
 	}
 
-    public function pathToFile($filename) {
+	/**
+	 * Get the path to a file relative to the plugin root
+	 *
+	 * @param String $filename Relative path to file
+	 * @return string Resolved path to file
+	 */
+	public function pathToFile($filename) {
         return $this->_pluginDir . DIRECTORY_SEPARATOR . $filename;
     }
 
-    public function urlToFile($filename) {
+	/**
+	 * Get the URL to a file relative to the plugin root
+	 *
+	 * @param String $filename Relative path to file
+	 * @return string URL to file
+	 */
+	public function urlToFile($filename) {
         return \plugins_url($filename, $this->_bootstrapFile);
     }
 
-    public function prefixKey($key)
+	/**
+	 * Prefix a string for namespaced use
+	 *
+	 * @param String $key Any string
+	 * @return string Namespaced (prefixed with self::PREFIX) string
+	 */
+	public function prefixKey($key)
     {
         return self::PREFIX . $key;
     }
 
+	/**
+	 * Get option
+	 *
+	 * @param String $key Option key
+	 * @param bool $default Default to return if option is not set
+	 * @return mixed|void
+	 */
 	public function getOption($key, $default = false)
 	{
 		return \get_option($this->prefixKey($key), $default);
 	}
 
+	/**
+	 * Set option
+	 *
+	 * @param String $key Option key
+	 * @param mixed $value Option value
+	 * @return bool
+	 */
 	public function setOption($key, $value)
 	{
 		return \update_option($this->prefixKey($key), $value);
 	}
 
-    public function filter($tag, $value)
+	/**
+	 * Filter using Wordpress' filter API, but namespaced
+	 *
+	 * @param string $tag Filter tag
+	 * @param mixed $value What to filter
+	 * @return mixed Filtered version of $value
+	 */
+	public function filter($tag, $value)
     {
         $args = func_get_args();
         $args[0] = $this->prefixKey($tag);
         return call_user_func_array('\apply_filters', $args);
     }
 
-    public function addFilter($tag, $callback, $priority = 10, $accepted_args = 1)
+	/**
+	 * Hook into an internal filter
+	 *
+	 * @param string $tag Filter tag
+	 * @param callable $callback Function that handles filter
+	 * @param int $priority Priority of filer
+	 * @param int $accepted_args Number of arguments accepted
+	 * @return bool|void
+	 */
+	public function addFilter($tag, $callback, $priority = 10, $accepted_args = 1)
     {
         return \add_filter($this->prefixKey($tag), $callback, $priority, $accepted_args);
     }
 
-    public function doAction($tag, $arg = '')
+	/**
+	 * Wordpress plugin hook, but namespaced
+	 *
+	 * @param String $tag Hook name
+	 * @param mixed $arg Arguments...
+	 * @return mixed
+	 */
+	public function doAction($tag, $arg = '')
     {
         $args = func_get_args();
         $args[0] = $this->prefixKey($tag);
