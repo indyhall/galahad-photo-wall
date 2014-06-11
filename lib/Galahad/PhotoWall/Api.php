@@ -161,7 +161,7 @@ class Api
 			$result = true;
 		} else {
 			// Set photo
-			$result = \update_user_meta($user->ID, $this->_plugin->prefixKey('photo'), $attachment->ID, true);
+			$result = \update_user_meta($user->ID, $this->_plugin->prefixKey('photo'), $attachment->ID);
 		}
 
 		if ($result) {
