@@ -154,6 +154,11 @@ class UserTable extends \WP_List_Table
 		) );
 	}
 
+	function column_ID($item) {
+		$id = $item->ID;
+		echo '<a href="/wp-admin/user-edit.php?user_id=' . $id . '">' . $id . '</a>';
+	}
+
 	function column_display_name($item)
 	{
 		$name = $item->display_name;
@@ -190,7 +195,7 @@ class UserTable extends \WP_List_Table
 
 		echo '<div class="' . ($attachmentId ? 'has-photo' : 'needs-photo') . '">';
 		echo '<a href="#" data-user-id="' . $item->ID . '" id="add-photo-' . $item->ID . '" class="button-primary add-photo">Add Photo</a> ';
-		echo '<a href="#" data-user-id="' . $item->ID . '" id="update-photo-' . $item->ID . '" class="button-primary update-photo">Update Photo</a> ';
+		echo '<a href="#" data-user-id="' . $item->ID . '" id="update-photo-' . $item->ID . '" class="button-secondary update-photo">Update Photo</a> ';
 		echo '<a href="#" data-user-id="' . $item->ID . '" id="delete-photo-' . $item->ID . '" class="button-secondary delete-photo">Delete Photo</a>';
 		echo '<span class="spinner"></span>';
 		echo '</div>';
