@@ -27,7 +27,7 @@ class Template
 
         if ($this->_isPhotoWallPage()) {
             // Load galahad-photo-wall.php from the theme if it exists
-            $themeTemplate = locate_template(array($plugin->filter('template_file_name', 'galahad-photo-wall.php')));
+            $themeTemplate = \locate_template(array($plugin->filter('template_file_name', 'galahad-photo-wall.php')));
             if ('' !== $themeTemplate) {
                 $template = $themeTemplate;
             } else {
