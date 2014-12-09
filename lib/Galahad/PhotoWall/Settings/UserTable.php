@@ -157,6 +157,7 @@ class UserTable extends \WP_List_Table
 	function column_ID($item) {
 		$id = $item->ID;
 		echo '<a href="/wp-admin/user-edit.php?user_id=' . $id . '">' . $id . '</a>';
+		echo ' <code>#member-' . $item->ID . '</code>';
 	}
 
 	function column_display_name($item)
