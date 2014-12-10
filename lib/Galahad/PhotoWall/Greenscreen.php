@@ -91,6 +91,11 @@ class Greenscreen
 					padding: 25px;
 					text-shadow: 2px 2px 10px #000;
 				}
+				.caption small {
+					color: rgba(255, 255, 255, 0.75);
+					font-size: 45px;
+					white-space: nowrap;
+				}
 				<?php 
 				if ($customCss = $plugin->getOption('greenscreen_css')) {
 					echo $customCss;
@@ -108,7 +113,14 @@ class Greenscreen
 					<?php foreach ($photos['data'] as $member): ?>
 						<div class="photo">
 							<img data-lazy="<?php echo $member['photo'] ?>" />
-							<h1 class="caption"><?php echo htmlspecialchars($member['display_name']) ?></h1>
+							<h1 class="caption">
+								<?php echo htmlspecialchars($member['display_name']) ?>
+								<?php 
+								if (isset($_REQUEST['subtext'])) {
+									echo '<small>' . htmlspecialchars($_REQUEST['subtext']) . '</small>';
+								}
+								?>
+							</h1>
 						</div>
 					<?php endforeach; ?>
 				</div>
