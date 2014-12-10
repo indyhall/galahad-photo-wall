@@ -118,6 +118,10 @@ class Api
 		    \set_transient($transientId, $results, 3600); // Cache for 1 hour
 		}
 
+		// Order by rand
+		if ('rand' == $req->orderby) {
+			shuffle($results);
+		}
 
 	    // Return
 	    return $this->_apiResponse($results);
