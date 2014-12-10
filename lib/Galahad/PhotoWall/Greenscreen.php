@@ -32,6 +32,11 @@ class Greenscreen
 			$autoplaySpeed = intval($_REQUEST['autoplay_speed']) * 1000;
 		}
 
+		// X-Frame-Options Header
+		if (function_exists('header_remove')) {
+			header_remove('X-Frame-Options');
+		}
+
 		// Output HTML
 		?>
 
