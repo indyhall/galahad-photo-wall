@@ -3,7 +3,7 @@
 Plugin Name: Galahad Photo Wall
 Plugin URI: http://www.indyhall.org/
 Description: Shows a wall of profile photos
-Version: 0.4.4
+Version: 0.4.5
 Author: Chris Morrell
 Author URI: http://cmorrell.com
 License: GPL2

@@ -118,7 +118,7 @@ class Greenscreen
 
 				<script type="text/javascript">
 				$('#greenscreen').slick({
-					lazyLoad: 'ondemand',
+					lazyLoad: 'progressive',
 					autoplay: true,
   					autoplaySpeed: <?php echo $autoplaySpeed ?>
 				});
