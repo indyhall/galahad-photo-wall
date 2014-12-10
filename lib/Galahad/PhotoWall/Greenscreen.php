@@ -81,7 +81,7 @@ class Greenscreen
 					font-family: "Bitter", serif;
 					font-size: 60px;
 					position: absolute;
-					bottom: 90px;
+					bottom: 60px;
 					right: 0;
 					width: 100%;
 					background: rgba(0, 0, 0, 0.4);
