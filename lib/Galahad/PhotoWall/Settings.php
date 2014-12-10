@@ -124,6 +124,8 @@ class Settings
 	public function settingsPage()
 	{
 		$plugin = $this->_plugin;
+		$greenscreenUrl = admin_url('admin-ajax.php') . '?action=' . $plugin->prefixKey('greenscreen');
+
 		?>
 
 		<div class="wrap">
@@ -146,6 +148,11 @@ class Settings
 				<?php \do_settings_sections($plugin->prefixKey('settings')); ?>
 				<?php \submit_button(); ?>
 			</form>
+
+			<h2><?php echo $plugin->translate('Greenscreen'); ?></h2>
+			<p><?=$plugin->translate('Use the following URL for Greenscreen:')?></p>
+			<p><input type="text" value="<?=$greenscreenUrl?>" onclick="this.select()" /></p>
+
 		</div>
 
 		<?php

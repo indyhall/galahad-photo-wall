@@ -57,6 +57,7 @@ class Plugin
 	    new Settings($this, $api);
         new Shortcode($this);
         new Template($this); // TODO: Conditionally load if a page is defined
+        new Greenscreen($this, $api);
 
         $this->doAction('post_init');
     }
