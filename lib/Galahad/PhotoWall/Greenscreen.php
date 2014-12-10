@@ -54,6 +54,14 @@ class Greenscreen
 					margin: 0;
 					overflow: hidden;
 				}
+				#logo {
+					position: absolute;
+					z-index: 10000;
+					bottom: 15px;
+					left: 15px;
+					width: 200px;
+					height: 200px;
+				}
 				#greenscreen {
 					height: 100%;
 					overflow: hidden;
@@ -75,12 +83,16 @@ class Greenscreen
 					color: #fff;
 					text-align: right;
 					margin: 0;
-					padding: 15px;
+					padding: 15px 15px 75px 15px;
 					text-shadow: 2px 2px 10px #000;
 				}
 				</style>
 			</head>
 			<body>
+
+				<?php if (isset($_REQUEST['logo'])): ?>
+					<img id="logo" src="<?php echo htmlspecialchars($_REQUEST['logo'])?>" />
+				<?php endif; ?>
 
 				<div id="greenscreen">
 					<?php foreach ($photos['data'] as $member): ?>
