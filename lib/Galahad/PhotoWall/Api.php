@@ -81,39 +81,43 @@ class Api
 	    );
 
 	    // Check for cache
+	    $results = false;
 	    $transientId = $this->_plugin->prefixKey('photos_cached_' . md5(json_encode($queryArgs)));
 	    if (!$req->fresh && $cached = \get_transient($transientId)) {
-		    return $cached;
+		    $results = $cached;
 	    }
 
-	    $wp_user_search = new \WP_User_Query($queryArgs);
-	    $users = $wp_user_search->get_results();
+	    if (!$results) {
+		    $wp_user_search = new \WP_User_Query($queryArgs);
+		    $users = $wp_user_search->get_results();
 
-	    $results = array();
-	    foreach ($users as $userId => $user) {
-		    $row = array(
-			    'ID' => $user->ID,
-			    'display_name' => ($user->first_name ? $user->first_name . ' ' . $user->last_name : $user->display_name), // FIXME
-			    'photo' => false
-		    );
+		    $results = array();
+		    foreach ($users as $userId => $user) {
+			    $row = array(
+				    'ID' => $user->ID,
+				    'display_name' => ($user->first_name ? $user->first_name . ' ' . $user->last_name : $user->display_name), // FIXME
+				    'photo' => false
+			    );
 
-		    $photo = $this->getPhoto(array(
-			    'user' => $user,
-			    'type' => 'url'
-		    ));
-		    if ($photo['success'] && $photo['data']) {
-			    $row['photo'] = $photo['data'];
+			    $photo = $this->getPhoto(array(
+				    'user' => $user,
+				    'type' => 'url'
+			    ));
+			    if ($photo['success'] && $photo['data']) {
+				    $row['photo'] = $photo['data'];
+			    }
+
+			    if (!$row['photo'] && $req->with_photos) {
+				    continue;
+			    }
+
+			    $results[] = $row;
 		    }
 
-		    if (!$row['photo'] && $req->with_photos) {
-			    continue;
-		    }
+		    // Store cache
+		    \set_transient($transientId, $results, 3600); // Cache for 1 hour
+		}
 
-		    $results[] = $row;
-	    }
-
-	    // Store cache
-	    \set_transient($transientId, $results, 3600); // Cache for 1 hour
 
 	    // Return
 	    return $this->_apiResponse($results);
