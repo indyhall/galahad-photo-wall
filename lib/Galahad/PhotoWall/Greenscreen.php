@@ -46,6 +46,7 @@ class Greenscreen
 		<html>
 			<head>
 				<meta http-equiv="refresh" content="600" />
+				<link href="http://fonts.googleapis.com/css?family=Bitter" rel="stylesheet" type="text/css" />
 				<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css" />
 				<style type="text/css">
 				*, *:before, *:after {
@@ -76,16 +77,18 @@ class Greenscreen
 					height: 100%;
 				}
 				.caption {
-					font: normal 50px Garamond, serif;
+					font-style: normal;
+					font-family: "Bitter", serif;
+					font-size: 60px;
 					position: absolute;
-					bottom: 0;
+					bottom: 90px;
 					right: 0;
 					width: 100%;
 					background: rgba(0, 0, 0, 0.4);
 					color: #fff;
 					text-align: right;
 					margin: 0;
-					padding: 15px 15px 75px 15px;
+					padding: 25px;
 					text-shadow: 2px 2px 10px #000;
 				}
 				<?php 
