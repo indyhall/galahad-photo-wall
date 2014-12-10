@@ -78,12 +78,12 @@ class Greenscreen
 			<body>
 
 				<div id="greenscreen">
-					<? foreach ($photos['data'] as $member): ?>
+					<?php foreach ($photos['data'] as $member): ?>
 						<div class="photo">
-							<img data-lazy="<?=$member['photo']?>" />
-							<h1 class="caption"><?=htmlspecialchars($member['display_name'])?></h1>
+							<img data-lazy="<?php echo $member['photo'] ?>" />
+							<h1 class="caption"><?php echo htmlspecialchars($member['display_name']) ?></h1>
 						</div>
-					<? endforeach; ?>
+					<?php endforeach; ?>
 				</div>
 
 				<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -93,7 +93,7 @@ class Greenscreen
 				$('#greenscreen').slick({
 					lazyLoad: 'ondemand',
 					autoplay: true,
-  					autoplaySpeed: <?=$autoplaySpeed?>
+  					autoplaySpeed: <?php echo $autoplaySpeed ?>
 				});
 				</script>
 
