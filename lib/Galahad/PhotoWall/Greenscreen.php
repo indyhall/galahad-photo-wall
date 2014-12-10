@@ -25,6 +25,8 @@ class Greenscreen
 	public function showGreenscreen()
 	{
 		$api = $this->_api;
+		$plugin = $this->_plugin;
+
 		$photos = $api->getPhotos(array('with_photos' => true)); // TODO: Handle $photos['success'] == false
 
 		$autoplaySpeed = 10000; // 10 seconds
@@ -86,6 +88,11 @@ class Greenscreen
 					padding: 15px 15px 75px 15px;
 					text-shadow: 2px 2px 10px #000;
 				}
+				<?php 
+				if ($customCss = $plugin->getOption('greenscreen_css')) {
+					echo $customCss;
+				}
+				?>
 				</style>
 			</head>
 			<body>

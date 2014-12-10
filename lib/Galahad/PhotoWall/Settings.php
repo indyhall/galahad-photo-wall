@@ -82,8 +82,21 @@ class Settings
 			$plugin->prefixKey('settings')
 		);
 
+		\add_settings_field(
+			$plugin->prefixKey('greenscreen_css'),
+			'Greenscreen custom CSS',
+			function() use ($plugin) {
+				$name = $plugin->prefixKey('greenscreen_css');
+				$value = $plugin->getOption('greenscreen_css');
+				echo '<textarea cols="80" rows="5" id="' . $name . '" name="' . $name . '">' . $value . '</textarea>';
+			},
+			$plugin->prefixKey('settings'),
+			$plugin->prefixKey('settings')
+		);
+
 		\register_setting($plugin->prefixKey('settings'), $plugin->prefixKey('page'));
 		\register_setting($plugin->prefixKey('settings'), $plugin->prefixKey('roles'));
+		\register_setting($plugin->prefixKey('settings'), $plugin->prefixKey('greenscreen_css'));
 	}
 
 	public function addMenuItems()
