@@ -67,7 +67,7 @@ class Shortcode
 	        'placeholder' => $plugin->filter('placeholder_url', $plugin->urlToFile('assets/placeholder.png'))
         ));
 
-        \wp_register_script($plugin->prefixKey('main-js'), $jsFile, array('jquery', 'jquery-unveil', 'zoomerang'), '1.0', true);
+        \wp_register_script($plugin->prefixKey('main-js'), $jsFile, array('jquery', 'jquery-unveil', 'zoomerang'), '1.0.1', true);
         \wp_localize_script($plugin->prefixKey('main-js'), 'galahadPhotoWallConfig', $config);
     }
 
