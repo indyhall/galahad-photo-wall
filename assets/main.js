@@ -35,7 +35,7 @@ jQuery && jQuery(function($) {
 
             $outlet = $('#' + galahadPhotoWallConfig.outlet_id);
             $.each(res.data, function(idx, row) {
-                $outlet.append('<div class="galahad-photo-wall-photo-container" id=member-"' + row.ID + '">' +
+                $outlet.append('<div class="galahad-photo-wall-photo-container" id="member-' + parseInt(row.ID, 10) + '">' +
                     '<img src="' + galahadPhotoWallConfig.placeholder + '" data-src="' + row.photo + '" class="galahad-photo-wall-photo" />' +
                     '<h3 class="galahad-photo-wall-caption">' + row.display_name + '</h3>' +
                     '</div>');

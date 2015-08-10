@@ -42,7 +42,7 @@ class Greenscreen
 		// Output HTML
 		?>
 
-		<DOCTYPE html>
+		<!DOCTYPE html>
 		<html>
 			<head>
 				<meta http-equiv="refresh" content="600" />
@@ -132,6 +132,7 @@ class Greenscreen
 				$('#greenscreen').slick({
 					lazyLoad: 'progressive',
 					autoplay: true,
+					infinite: true,
   					autoplaySpeed: <?php echo $autoplaySpeed ?>
 				});
 				</script>
